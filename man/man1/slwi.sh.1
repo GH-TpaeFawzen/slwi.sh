@@ -1,0 +1,151 @@
+.\" 
+.\" slwi.sh.1 - slwi.sh manual
+.\" 
+.\" Written in 2021 by TpaeFawzen (https://github.com/GH-TpaeFawzen)
+.\" 
+.\" To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
+.\" 
+.\" You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+.\" 
+.\"
+.\" slwi.sh.1 -- slwi.sh manual
+.\"
+.\" - REPOSITORY section
+.\" - REPORTING A BUG section
+.\" - AND COPYING
+.\"
+.\" written by GH-TpaeFawzen on 2021/01/18 17:41
+.\" (The time above is in JST)
+.\"
+.TH SLWI.SH 1 "2021-01-18"
+.SH NAME
+slwi.sh \- itflabtijtslwi interpreter
+.SH SYNOPSIS
+.B slwi.sh
+[\fB\-?\fR|\fB\-h\fR|\fB\-\-help\fR|\fB\-\-usage\fR]
+[\fB\-d\fR[\fB1\fR|\fB2\fR]\fR]
+[\fB\-\-shut\-up\fR]
+[\fIFILE\fR]
+.SH DESCRIPTION
+.B slwi.sh
+is an interpreter for an esoteric language
+.B itflabtijtslwi
+, which stand for
+.I ignore this fancy little acronym, because this is just that slashes language with input
+, implemented in POSIX-compliant shell language script with POSIX-compliant utilities.
+The required utilities are:
+.BR sh\fR,
+.BR umask\fR,
+.BR getconf \fR
+(optional),
+.BR cat\fR,
+.BR printf\fR,
+.BR test\fR,
+.BR od\fR,
+.BR tr\fR,
+.BR sed\fR,
+.BR grep\fR,
+.BR echo\fR,
+.BR head\fR,
+.BR awk \fR,
+and
+.BR xargs\fR.
+.PP
+If \fIFILE\fR is given, \fBslwi.sh\fR first examines if the file is readable, and is
+one of a regular file, a character special, or a FIFO file.
+However, if \fIFILE\fR is one of null string, \fI\-\fR, \fI/dev/stdin\fR, 
+\fI/dev/fd/0\fR, or \fI/proc/self/fd/0\fR, then \fBslwi.sh\fR behaves as if
+\fIFILE\fR is not given, thus the examination is not done and
+the \fBitflabtijtslwi\fR program is read from STDIN.
+If this examination fails, \fBslwi.sh\fR aborts the program.
+Finally, \fIFILE\fR is read as \fBitflabtijtslwi\fR program source
+to run, accepting some input string from STDIN if needed.
+.PP
+If \fIFILE\fR is not given, the \fBitflabtijtslwi\fR program source and the input for
+the program are read from STDIN, both terminated with single EOF.
+.PP
+In both case, both \fBitflabtijtslwi\fR program and its input string may have
+any binary characters. They are treated as ASCII strings.
+.PP
+Finally, if input string for the \fBitflabtijtslwi\fR is to be given from your
+terminal, \fBslwi.sh\fR notifies end of \fBitflabtijtslwi\fR program,
+by outputting a message to STDERR.
+This feature can be disabled by \fI\-\-shut\-up\fR, as described in OPTION.
+.SH OPTION
+.TP
+.B \-?, \-h, \-\-help, \-\-usage
+Display usage of the \fBslwi.sh\fR to STDERR to terminate.
+.TP
+.B \-d
+Do a debug mode: it outputs remaining \fBitflabtijtslwi\fR program every time
+the following condition happens, to STDERR.
+If this option is specified with no argument, this program behaves as if
+\fB\-d2\fR were specified.
+.IP
+.B \-d1
+Every time after 
+.B itflabtij
+program itself output something.
+.IP
+.B \-d2
+Before every step.
+.TP
+.B \-\-shut\-up
+Disables notification that outputted
+when \fBitflabtijtslwi\fR program terminates and its input is
+given from your terminal directly.
+.SH ARGUMENT
+.TP
+.I FILE
+\fBitflabtijtslwi\fR source file. If it is not given, or one of
+null string, \fI\-\fR, \fI/dev/stdin\fR, 
+\fI/dev/fd/0\fR, or \fI/proc/self/fd/0\fR, then
+the \fBitflabtijtslwi\fR program source is given from STDIN.
+.SH STDIN
+The STDIN is used for giving \fBitflabtijtslwi\fR source file and
+its input.
+.SH STDOUT
+Used for output by \fBitflabtijtslwi\fR program.
+.SH STDERR
+Used for displaying usage, debugging, and some diagonal messages.
+.PP
+In debbugin mode the remaining program is output in following format:
+.sp
+.RS 44
+.nf
+
+"[%s]\en", <\fIprogram\fR>
+.fi
+.SH EXIT STATUS
+.TP
+0
+Successfully terminated.
+.TP
+1
+Displayed usage of program.
+.TP
+31
+\fIFILE\fR is not readable, or a readable type of file.
+.TP
+66
+Unintended error on \fBitflabtijtslwi\fR interpreter.
+.TP
+Others
+Unintended errors.
+.SH AUTHOR
+TpaeFawzen
+.UR https://github.com/GH-TpaeFawzen
+.UE
+.SH ONLINE REPOSITORY
+The online repository for
+.B slwi.sh
+can be found in: 
+.UR https://github.com/GH-TpaeFawzen/slwi.sh
+.UE
+.SH REPORTING A BUG
+Please report anything that is out of exception on:
+.UR https://github.com/GH-TpaeFawzen/slwi.sh/issues
+.UE
+.SH COPYING
+.I slwi.sh
+is licensed under CC0 1.0 Universal.

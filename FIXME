@@ -1,0 +1,3 @@
+- `echo asdf | ./slwi example/cat.slwi` failed;
+it just output single letter of `a` without LF.
+- example/loop.sss does never output anything....

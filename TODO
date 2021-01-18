@@ -1,0 +1,4 @@
+- Make slwi.sh usable for large itflabtijtslwi and /// programs,
+such as examples/loop.sss.
+- So far I have ever done KISS way, but any better algorithm?
+- Maybe should I abandon using AWK, in case STUPIDLY BIG source is input?
