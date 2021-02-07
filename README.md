@@ -10,3 +10,6 @@ The itflabtijtslwi interpreter implemented in POSIXismly-written POSIX shell lan
 - ./TODO
 - ./log.pax.Z -- Archives of old versions.
 - ./slwi.sh -- The only and main program.
+
+# Licensing
+Please refer COPYING.
